@@ -2,7 +2,6 @@
   <title>Maison Phaos (logo provisoire)</title>
   <g>
     <rect width="100" height="100" rx="6" fill="#0B2551"/>
-    <path d="M28 20 L50 8 L72 20" fill="none" stroke="#EF4135" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
     <rect x="40.5" y="24.8" width="19" height="50.4" fill="#FFFFFF"/>
     <rect x="24.8" y="40.6" width="50.4" height="19" fill="#FFFFFF"/>
   </g>

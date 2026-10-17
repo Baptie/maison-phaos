@@ -27,7 +27,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div className="contenu">
-      <article className="conteneur article-page">
+      <article className="conteneur article-page bloc">
         <p>
           <Link href="/blog">Retour aux actualités</Link>
         </p>

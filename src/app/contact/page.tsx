@@ -19,9 +19,11 @@ export default async function Contact({ searchParams }: Props) {
 
       <div className="contenu">
         <div className="conteneur deux-colonnes">
-          <ContactForm objetInitial={objet} emailSecours={site.contact.email.valeur} />
+          <div className="bloc">
+            <ContactForm objetInitial={objet} emailSecours={site.contact.email.valeur} />
+          </div>
 
-          <aside className="encadre">
+          <aside className="encadre bloc">
             <h2>Autres moyens de nous joindre</h2>
             <p>
               <strong>Téléphone</strong>

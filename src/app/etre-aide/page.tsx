@@ -23,7 +23,7 @@ export default function EtreAide() {
 
       <div className="contenu">
         <div className="conteneur">
-          <section className="deux-colonnes">
+          <section className="deux-colonnes bloc">
             <div>
               <h2>Qui peut être accompagné&nbsp;?</h2>
               <TodoBloc titre="Critères d'accompagnement">
@@ -36,7 +36,7 @@ export default function EtreAide() {
             <SiteImage image={images.etreAide} />
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Comment faire une demande</h2>
             <ol className="etapes">
               <li>
@@ -67,7 +67,7 @@ export default function EtreAide() {
             </div>
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Connaître ses droits</h2>
             <TodoBloc titre="Droits et dispositifs existants">
               <p>

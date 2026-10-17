@@ -13,7 +13,7 @@ export default function Confidentialite() {
       </PageHeader>
       <div className="contenu">
         <div className="conteneur">
-          <section>
+          <section className="bloc">
             <h2>Formulaire de contact</h2>
             <p>
               Les informations envoyées par le formulaire (nom, adresse e-mail, message) servent
@@ -28,7 +28,7 @@ export default function Confidentialite() {
             </p>
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Mesure d&apos;audience et cookies</h2>
             <p>
               Ce site n&apos;utilise aucun outil de mesure d&apos;audience ni cookie publicitaire. Il
@@ -36,7 +36,7 @@ export default function Confidentialite() {
             </p>
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Vos droits</h2>
             <p>
               Vous pouvez demander l&apos;accès, la rectification ou la suppression de vos données en

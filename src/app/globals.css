@@ -310,8 +310,9 @@ h2 mark.todo {
   padding: 0.4rem 0;
   border-bottom: 2px solid transparent;
 }
-.nav a:hover {
-  border-bottom-color: var(--color-marine);
+.nav a:hover,
+.nav a[aria-current="page"] {
+  border-bottom-color: var(--color-rouge);
 }
 
 .nav-mobile {
@@ -409,19 +410,7 @@ h2 mark.todo {
   margin-top: 1.8rem;
 }
 
-/* La « maison » : panneau marine coiffé du toit rouge */
-.maison {
-  position: relative;
-  padding-top: clamp(2.2rem, 4vw, 3rem);
-}
-.maison__toit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: clamp(2.4rem, 4.5vw, 3.4rem);
-  overflow: visible;
-}
+/* Panneau « Être aidé » du hero */
 .maison__corps {
   background: var(--color-marine);
   color: var(--color-blanc);
@@ -628,6 +617,16 @@ h2 mark.todo {
 .page-entete h1 {
   margin-bottom: 0.4em;
 }
+/* Fin filet rouge sous le titre des pages internes */
+.page-entete h1::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.35em;
+  background: var(--color-rouge);
+  border-radius: 2px;
+}
 .page-entete__intro p {
   font-size: var(--fs-lead);
   margin-bottom: 0;
@@ -809,6 +808,30 @@ h2 mark.todo {
 @media (max-width: 52rem) {
   .pied__inner {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Liens du pied de page : soulignement rouge au survol */
+.pied a:hover {
+  text-decoration-color: var(--color-rouge);
+}
+
+/* ---------- Apparition progressive des blocs ---------- */
+/* Un élément avec la classe « bloc » apparaît en fondu (voir src/components/Apparitions.tsx). */
+@keyframes apparition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js .bloc {
+    opacity: 0;
+  }
+  html.js .bloc.bloc--visible {
+    animation: apparition 0.6s ease-out both;
   }
 }
 

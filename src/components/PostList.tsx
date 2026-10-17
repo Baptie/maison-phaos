@@ -13,14 +13,14 @@ export function PostList({ resultat }: { resultat: Resultat<Article[]> }) {
   return (
     <div className={factice ? "zone-factice" : undefined}>
       {factice ? (
-        <p className="zone-factice__note">
+        <p className="zone-factice__note bloc">
           Articles de démonstration : l&apos;espace d&apos;édition Sanity n&apos;est pas encore
           branché.
         </p>
       ) : null}
       <ul className="articles">
         {donnees.map((a) => (
-          <li key={a.slug} className="article-carte">
+          <li key={a.slug} className="article-carte bloc">
             {a.image ? (
               <div className="article-carte__image">
                 <Image src={`${a.image.url}?w=800&h=500&fit=crop&auto=format`} alt={a.image.alt} fill sizes="(max-width: 48rem) 100vw, 33vw" />

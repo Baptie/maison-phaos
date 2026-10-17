@@ -6,6 +6,7 @@ import "./globals.css";
 import { site } from "@/config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Apparitions } from "@/components/Apparitions";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -16,7 +17,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        {/* Active les animations d'apparition seulement si JavaScript est disponible */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <a href="#contenu" className="lien-evitement">
           Aller au contenu
@@ -24,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="contenu">{children}</main>
         <Footer />
+        <Apparitions />
       </body>
     </html>
   );

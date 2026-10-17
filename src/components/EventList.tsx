@@ -11,7 +11,7 @@ export function EventList({ resultat }: { resultat: Resultat<Evenement[]> }) {
   return (
     <div className={factice ? "zone-factice" : undefined}>
       {factice ? (
-        <p className="zone-factice__note">
+        <p className="zone-factice__note bloc">
           Événements de démonstration : l&apos;agenda Google de l&apos;association n&apos;est pas
           encore branché.
         </p>
@@ -20,7 +20,7 @@ export function EventList({ resultat }: { resultat: Resultat<Evenement[]> }) {
         {donnees.map((ev) => {
           const { jour, mois } = jourEtMois(ev.debut);
           return (
-            <li key={ev.id} className="agenda__item">
+            <li key={ev.id} className="agenda__item bloc">
               <p className="agenda__date" aria-hidden="true">
                 <span className="agenda__jour">{jour}</span>
                 <span className="agenda__mois">{mois}</span>

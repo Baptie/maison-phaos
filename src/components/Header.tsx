@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/config/site";
 import { LogoIcone } from "./Logo";
+import { NavLinks } from "./NavLinks";
 
 export function Header() {
   return (
@@ -15,24 +16,12 @@ export function Header() {
         <details className="nav-mobile">
           <summary className="nav-mobile__bouton">Menu</summary>
           <nav aria-label="Navigation principale" className="nav nav--mobile">
-            <ul>
-              {site.navigation.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href}>{l.label}</Link>
-                </li>
-              ))}
-            </ul>
+            <NavLinks />
           </nav>
         </details>
 
         <nav aria-label="Navigation principale" className="nav nav--bureau">
-          <ul>
-            {site.navigation.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href}>{l.label}</Link>
-              </li>
-            ))}
-          </ul>
+          <NavLinks />
         </nav>
 
         <Link href={site.ctaPrincipal.href} className="bouton bouton--marine entete__cta">

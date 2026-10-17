@@ -27,7 +27,7 @@ export default async function Blog() {
           </section>
 
           <section id="agenda" aria-labelledby="titre-agenda">
-            <h2 id="titre-agenda">Agenda</h2>
+            <h2 id="titre-agenda" className="bloc">Agenda</h2>
             <EventList resultat={evenements} />
           </section>
         </div>

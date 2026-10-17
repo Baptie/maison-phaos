@@ -18,7 +18,7 @@ export default async function Accueil() {
       {/* ---------- Hero : l'accès à l'aide d'abord ---------- */}
       <section className="hero">
         <div className="conteneur hero__grille">
-          <div>
+          <div className="bloc">
             <h1>
               <Todo note="Phrase de mission : proposition à valider par l'association">
                 Après la blessure, une maison pour se reconstruire.
@@ -36,23 +36,7 @@ export default async function Accueil() {
             </div>
           </div>
 
-          <div className="maison">
-            <svg
-              className="maison__toit"
-              viewBox="0 0 400 60"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M14 54 L200 8 L386 54"
-                fill="none"
-                stroke="var(--color-rouge)"
-                strokeWidth="7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
+          <div className="maison bloc">
             <div className="maison__corps">
               <h2>Vous êtes blessé, ou proche d&apos;un blessé&nbsp;?</h2>
               <p>
@@ -73,7 +57,7 @@ export default async function Accueil() {
       {/* ---------- L'association en bref ---------- */}
       <section className="section section--alt">
         <div className="conteneur deux-colonnes">
-          <div>
+          <div className="bloc">
             <h2>L&apos;association</h2>
             <p>
               <Todo>
@@ -96,14 +80,14 @@ export default async function Accueil() {
               </figcaption>
             </figure>
           </div>
-          <SiteImage image={images.accueil} ratio="4 / 5" />
+          <SiteImage image={images.accueil} ratio="4 / 5" className="bloc" />
         </div>
       </section>
 
       {/* ---------- Agenda ---------- */}
       <section className="section">
         <div className="conteneur">
-          <div className="section__entete">
+          <div className="section__entete bloc">
             <h2>Prochains rendez-vous</h2>
             <Link href="/blog#agenda">Tout l&apos;agenda</Link>
           </div>
@@ -114,7 +98,7 @@ export default async function Accueil() {
       {/* ---------- Actualités ---------- */}
       <section className="section section--alt">
         <div className="conteneur">
-          <div className="section__entete">
+          <div className="section__entete bloc">
             <h2>Actualités</h2>
             <Link href="/blog">Toutes les actualités</Link>
           </div>
@@ -125,21 +109,21 @@ export default async function Accueil() {
       {/* ---------- Soutenir ---------- */}
       <section className="section">
         <div className="conteneur">
-          <h2>Soutenir l&apos;association</h2>
+          <h2 className="bloc">Soutenir l&apos;association</h2>
           <ul className="soutiens">
-            <li>
+            <li className="bloc">
               <h3>Faire un don</h3>
               <p>
                 <Todo note="Outil de collecte à choisir">Le don en ligne sera bientôt disponible.</Todo>
               </p>
               <Link href="/soutenir#don">En savoir plus</Link>
             </li>
-            <li>
+            <li className="bloc">
               <h3>Adhérer</h3>
               <p>Rejoindre l&apos;association et participer à sa vie.</p>
               <Link href="/soutenir#adherer">Adhérer</Link>
             </li>
-            <li>
+            <li className="bloc">
               <h3>Devenir bénévole</h3>
               <p>Donner un peu de son temps, selon ses disponibilités.</p>
               <Link href="/soutenir#benevole">Devenir bénévole</Link>

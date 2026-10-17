@@ -17,7 +17,7 @@ export default function Soutenir() {
 
       <div className="contenu">
         <div className="conteneur">
-          <section id="don" className="deux-colonnes">
+          <section id="don" className="deux-colonnes bloc">
             <div>
               <h2>Faire un don</h2>
               <p>
@@ -43,14 +43,14 @@ export default function Soutenir() {
             <SiteImage image={images.soutenir} />
           </section>
 
-          <section id="adherer">
+          <section id="adherer" className="bloc">
             <h2>Adhérer</h2>
             <TodoBloc titre="Adhésion">
               <p>Montant de la cotisation, ce qu&apos;elle permet, et comment adhérer (bulletin, en ligne…).</p>
             </TodoBloc>
           </section>
 
-          <section id="benevole">
+          <section id="benevole" className="bloc">
             <h2>Devenir bénévole</h2>
             <p>
               <Todo>Les missions bénévoles possibles et le temps à prévoir.</Todo>
@@ -60,7 +60,7 @@ export default function Soutenir() {
             </Link>
           </section>
 
-          <section id="partenaires">
+          <section id="partenaires" className="bloc">
             <h2>Partenaires et mécènes</h2>
             <TodoBloc titre="Partenariats">
               <p>Comment devenir partenaire, et logos des partenaires actuels à afficher.</p>

@@ -11,7 +11,7 @@ export default function MentionsLegales() {
       <PageHeader titre="Mentions légales" />
       <div className="contenu">
         <div className="conteneur">
-          <section>
+          <section className="bloc">
             <h2>Éditeur du site</h2>
             <ul className="liste-simple">
               <li>
@@ -33,7 +33,7 @@ export default function MentionsLegales() {
             </ul>
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Hébergement</h2>
             <p>
               Netlify, Inc., États-Unis.{" "}
@@ -41,7 +41,7 @@ export default function MentionsLegales() {
             </p>
           </section>
 
-          <section>
+          <section className="bloc">
             <h2>Propriété intellectuelle</h2>
             <p>
               Les textes, photos et logos de ce site appartiennent à l&apos;association ou sont
