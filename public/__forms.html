@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Formulaires</title></head>
+<body>
+  <!-- Déclaration des formulaires pour Netlify Forms (détectée au déploiement).
+       Doit contenir les mêmes champs que src/components/ContactForm.tsx. -->
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact">
+    <input name="bot-field">
+    <select name="objet"><option value="aide">aide</option></select>
+    <input name="nom" type="text">
+    <input name="email" type="email">
+    <textarea name="message"></textarea>
+    <input name="consentement" type="checkbox" value="oui">
+  </form>
+</body>
+</html>

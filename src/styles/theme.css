@@ -1,0 +1,44 @@
+/*
+ * THÈME DU SITE — point unique pour changer l'identité visuelle.
+ * Modifier une valeur ici la répercute sur tout le site.
+ */
+:root {
+  /* Couleurs de marque */
+  --color-marine: #0b2551;        /* fonds forts, titres, boutons */
+  --color-marine-soft: #1e3a6e;   /* survol des boutons marine */
+  --color-rouge: #ef4135;         /* toit du logo, filets d'accent (jamais pour du texte) */
+  --color-rouge-texte: #b3261e;   /* rouge lisible pour du texte sur fond clair */
+  --color-blanc: #ffffff;
+
+  /* Surfaces et texte */
+  --color-fond: #ffffff;
+  --color-fond-alt: #eef2f7;      /* sections alternées */
+  --color-texte: #1a2333;
+  --color-texte-doux: #4f5b70;
+  --color-filet: #d5dce7;         /* bordures fines */
+  --color-focus: #2f6fd6;
+
+  /* « Reste à faire » : tout ce qui est provisoire ou incomplet */
+  --color-todo: #ffb000;
+  --color-todo-fond: #fff3cf;
+  --color-todo-texte: #5c3f00;
+
+  /* Typographie */
+  --font-titre: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
+  --font-texte: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+
+  /* Échelle typographique (base 18 px, ratio ~1,25) */
+  --fs-small: 0.889rem;
+  --fs-base: 1.125rem;
+  --fs-lead: 1.3rem;
+  --fs-h3: 1.4rem;
+  --fs-h2: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem);
+  --fs-h1: clamp(2.1rem, 1.4rem + 2.8vw, 3.2rem);
+
+  /* Mise en page */
+  --largeur-max: 72rem;
+  --largeur-texte: 68ch;
+  --gouttiere: clamp(1rem, 4vw, 2rem);
+  --espace-section: clamp(3rem, 7vw, 5.5rem);
+  --rayon: 6px;
+}

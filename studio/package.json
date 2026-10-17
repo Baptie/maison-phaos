@@ -1,0 +1,21 @@
+{
+  "name": "maison-phaos-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Espace d'édition des actualités (Sanity Studio)",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "@sanity/locale-fr-fr": "1.2.37",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sanity": "6.17.0",
+    "styled-components": "6.1.19"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
