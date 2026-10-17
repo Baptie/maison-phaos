@@ -23,7 +23,7 @@ export default async function Contact({ searchParams }: Props) {
             <ContactForm objetInitial={objet} emailSecours={site.contact.email.valeur} />
           </div>
 
-          <aside className="encadre bloc">
+          <aside className="encadre cascade">
             <h2>Autres moyens de nous joindre</h2>
             <p>
               <strong>Téléphone</strong>

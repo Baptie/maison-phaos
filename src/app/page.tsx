@@ -18,7 +18,7 @@ export default async function Accueil() {
       {/* ---------- Hero : l'accès à l'aide d'abord ---------- */}
       <section className="hero">
         <div className="conteneur hero__grille">
-          <div className="bloc">
+          <div className="cascade">
             <h1>
               <Todo note="Phrase de mission : proposition à valider par l'association">
                 Après la blessure, une maison pour se reconstruire.
@@ -37,7 +37,7 @@ export default async function Accueil() {
           </div>
 
           <div className="maison bloc">
-            <div className="maison__corps">
+            <div className="maison__corps cascade">
               <h2>Vous êtes blessé, ou proche d&apos;un blessé&nbsp;?</h2>
               <p>
                 L&apos;association vous écoute et vous oriente, quelle que soit votre situation.
@@ -57,7 +57,7 @@ export default async function Accueil() {
       {/* ---------- L'association en bref ---------- */}
       <section className="section section--alt">
         <div className="conteneur deux-colonnes">
-          <div className="bloc">
+          <div className="cascade">
             <h2>L&apos;association</h2>
             <p>
               <Todo>
@@ -111,19 +111,19 @@ export default async function Accueil() {
         <div className="conteneur">
           <h2 className="bloc">Soutenir l&apos;association</h2>
           <ul className="soutiens">
-            <li className="bloc">
+            <li className="cascade">
               <h3>Faire un don</h3>
               <p>
                 <Todo note="Outil de collecte à choisir">Le don en ligne sera bientôt disponible.</Todo>
               </p>
               <Link href="/soutenir#don">En savoir plus</Link>
             </li>
-            <li className="bloc">
+            <li className="cascade">
               <h3>Adhérer</h3>
               <p>Rejoindre l&apos;association et participer à sa vie.</p>
               <Link href="/soutenir#adherer">Adhérer</Link>
             </li>
-            <li className="bloc">
+            <li className="cascade">
               <h3>Devenir bénévole</h3>
               <p>Donner un peu de son temps, selon ses disponibilités.</p>
               <Link href="/soutenir#benevole">Devenir bénévole</Link>

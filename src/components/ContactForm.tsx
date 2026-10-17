@@ -56,7 +56,7 @@ export function ContactForm({ objetInitial, emailSecours }: { objetInitial?: str
   const objetDefaut = OBJETS.some((o) => o.valeur === objetInitial) ? objetInitial : "aide";
 
   return (
-    <form name="contact" className="formulaire" onSubmit={envoyer}>
+    <form name="contact" className="formulaire cascade" onSubmit={envoyer}>
       <input type="hidden" name="form-name" value="contact" />
       {/* Piège à robots : champ invisible pour les humains */}
       <p className="sr-only" aria-hidden="true">

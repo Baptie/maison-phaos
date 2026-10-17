@@ -816,22 +816,29 @@ h2 mark.todo {
   text-decoration-color: var(--color-rouge);
 }
 
-/* ---------- Apparition progressive des blocs ---------- */
-/* Un élément avec la classe « bloc » apparaît en fondu (voir src/components/Apparitions.tsx). */
+/* ---------- Apparition progressive ---------- */
+/*
+ * « bloc »    : l'élément apparaît en fondu.
+ * « cascade » : chacun de ses enfants directs apparaît en fondu, l'un après l'autre.
+ * Pilotage : src/components/Apparitions.tsx
+ */
 @keyframes apparition {
   from {
     opacity: 0;
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
+    transform: none;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  html.js .bloc {
+  html.js .bloc,
+  html.js .cascade > :not(.cascade) {
     opacity: 0;
   }
-  html.js .bloc.bloc--visible {
-    animation: apparition 0.6s ease-out both;
+  html.js .apparu {
+    animation: apparition 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
   }
 }
 

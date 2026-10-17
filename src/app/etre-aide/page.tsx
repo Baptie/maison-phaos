@@ -23,8 +23,8 @@ export default function EtreAide() {
 
       <div className="contenu">
         <div className="conteneur">
-          <section className="deux-colonnes bloc">
-            <div>
+          <section className="deux-colonnes cascade">
+            <div className="cascade">
               <h2>Qui peut être accompagné&nbsp;?</h2>
               <TodoBloc titre="Critères d'accompagnement">
                 <p>
@@ -36,9 +36,9 @@ export default function EtreAide() {
             <SiteImage image={images.etreAide} />
           </section>
 
-          <section className="bloc">
+          <section className="cascade">
             <h2>Comment faire une demande</h2>
-            <ol className="etapes">
+            <ol className="etapes cascade">
               <li>
                 <h3>Prendre contact</h3>
                 <p>
@@ -58,7 +58,7 @@ export default function EtreAide() {
                 </p>
               </li>
             </ol>
-            <div className="encadre">
+            <div className="encadre cascade">
               <h3>Faire une demande maintenant</h3>
               <p>Décrivez votre situation en quelques lignes. Nous vous répondrons par e-mail.</p>
               <Link href="/contact?objet=aide" className="bouton bouton--marine">
@@ -67,7 +67,7 @@ export default function EtreAide() {
             </div>
           </section>
 
-          <section className="bloc">
+          <section className="cascade">
             <h2>Connaître ses droits</h2>
             <TodoBloc titre="Droits et dispositifs existants">
               <p>

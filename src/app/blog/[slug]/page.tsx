@@ -27,7 +27,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div className="contenu">
-      <article className="conteneur article-page bloc">
+      <article className="conteneur article-page cascade">
         <p>
           <Link href="/blog">Retour aux actualités</Link>
         </p>
@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: Props) {
             />
           </div>
         ) : null}
-        <div className="prose">
+        <div className="prose cascade">
           <PortableText value={article.corps ?? []} />
         </div>
       </article>
