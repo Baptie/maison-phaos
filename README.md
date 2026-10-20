@@ -39,11 +39,15 @@ Quand un texte est définitif, retirer simplement la balise `<Todo>` qui l'entou
 
 ### Blog (Sanity)
 
-1. Créer un projet gratuit sur [sanity.io/manage](https://www.sanity.io/manage), avec le jeu de données `production`.
-2. Dans le dossier `studio/` : `npm install`, puis `SANITY_STUDIO_PROJECT_ID=<id> npm run deploy`. L'espace d'édition est alors en ligne (par exemple `https://maison-phaos.sanity.studio`).
-3. Dans Sanity > API > CORS origins, ajouter l'adresse du site et `http://localhost:3000`.
-4. Inviter le ou les bénévoles avec le rôle **Editor**.
-5. Renseigner `SANITY_PROJECT_ID` dans Netlify (et dans `.env.local`).
+Le projet Sanity existe déjà : `maison-phaos`, identifiant `50qw41xy`, jeu de données `production` (public en lecture, c'est nécessaire pour que le site affiche les articles).
+
+1. En local : `SANITY_PROJECT_ID=50qw41xy` et `SANITY_DATASET=production` dans `.env.local`.
+2. Espace d'édition en local : `cd studio && npm install && npm run dev` (http://localhost:3333).
+3. Espace d'édition en ligne : `cd studio && npx sanity login && npm run deploy` (publié sur `https://maison-phaos.sanity.studio`).
+4. Inviter le ou les bénévoles depuis sanity.io/manage > projet > Members, avec le rôle **Editor**.
+5. Renseigner `SANITY_PROJECT_ID` et `SANITY_DATASET` dans Netlify.
+
+Aucun réglage CORS n'est nécessaire pour le site : les articles sont lus côté serveur.
 
 Un article publié apparaît sur le site en 10 minutes au plus.
 
