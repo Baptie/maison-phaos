@@ -26,7 +26,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-titre);
-  color: var(--color-marine);
+  color: var(--color-titre);
   line-height: 1.2;
   font-weight: 600;
   margin: 0 0 0.6em;
@@ -49,7 +49,7 @@ p {
 }
 
 a {
-  color: var(--color-marine);
+  color: var(--color-titre);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
@@ -81,7 +81,7 @@ img {
   left: 1rem;
   top: -4rem;
   z-index: 100;
-  background: var(--color-marine);
+  background: var(--color-panneau);
   color: var(--color-blanc);
   padding: 0.6rem 1rem;
   border-radius: var(--rayon);
@@ -142,23 +142,23 @@ img {
   transition: background-color 0.15s ease;
 }
 .bouton--marine {
-  background: var(--color-marine);
+  background: var(--color-bouton);
   color: var(--color-blanc);
 }
 .bouton--marine:hover {
-  background: var(--color-marine-soft);
+  background: var(--color-bouton-survol);
 }
 .bouton--blanc {
   background: var(--color-blanc);
   color: var(--color-marine);
 }
 .bouton--blanc:hover {
-  background: var(--color-fond-alt);
+  background: var(--color-panneau-texte);
 }
 .bouton--contour {
   background: transparent;
-  color: var(--color-marine);
-  border-color: var(--color-marine);
+  color: var(--color-titre);
+  border-color: var(--color-titre);
 }
 .bouton--contour:hover {
   background: var(--color-fond-alt);
@@ -264,12 +264,18 @@ h2 mark.todo {
   font-style: italic;
 }
 
+/* Logo : fin contour en mode sombre pour qu'il se détache du fond */
+.logo-icone {
+  border-radius: 6px;
+  outline: 1px solid var(--color-logo-contour);
+}
+
 /* ---------- En-tête ---------- */
 .entete {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--color-blanc);
+  background: var(--color-surface);
   border-bottom: 1px solid var(--color-filet);
 }
 .entete__inner {
@@ -291,7 +297,7 @@ h2 mark.todo {
   font-family: var(--font-titre);
   font-weight: 600;
   font-size: 1.35rem;
-  color: var(--color-marine);
+  color: var(--color-titre);
   letter-spacing: -0.005em;
 }
 
@@ -324,9 +330,9 @@ h2 mark.todo {
   font-weight: 700;
   font-size: 1rem;
   padding: 0.55rem 0.9rem;
-  border: 2px solid var(--color-marine);
+  border: 2px solid var(--color-titre);
   border-radius: var(--rayon);
-  color: var(--color-marine);
+  color: var(--color-titre);
 }
 .nav-mobile__bouton::-webkit-details-marker {
   display: none;
@@ -347,7 +353,7 @@ h2 mark.todo {
     left: 0;
     right: 0;
     top: 100%;
-    background: var(--color-blanc);
+    background: var(--color-surface);
     border-bottom: 1px solid var(--color-filet);
     padding: 0.5rem var(--gouttiere) 1rem;
   }
@@ -367,24 +373,74 @@ h2 mark.todo {
   white-space: nowrap;
 }
 @media (max-width: 30rem) {
-  .entete__nom {
-    font-size: 1.05rem;
-  }
   .entete__marque {
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
   .entete__marque .logo-icone {
     width: 36px;
     height: 36px;
   }
   .nav-mobile__bouton {
-    padding: 0.5rem 0.7rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.9rem;
   }
   .entete__cta {
-    padding: 0.5rem 0.8rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+    min-height: 2.3rem;
   }
   .entete__inner {
-    gap: 0.5rem;
+    gap: 0.35rem;
+  }
+  .entete__nom {
+    font-size: 0.95rem;
+  }
+}
+
+/* Très petits écrans : le logo seul suffit (le lien garde son nom accessible) */
+@media (max-width: 23rem) {
+  .entete__nom {
+    display: none;
+  }
+}
+
+/* ---------- Bouton clair / sombre ---------- */
+.theme-bouton {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 2px solid var(--color-titre);
+  border-radius: var(--rayon);
+  background: transparent;
+  color: var(--color-titre);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.theme-bouton:hover {
+  background: var(--color-fond-alt);
+}
+.theme-bouton svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  grid-area: 1 / 1;
+}
+/* Une seule icône à la fois : la lune propose le mode sombre, le soleil le mode clair */
+.theme-bouton__soleil {
+  display: none;
+}
+:root[data-theme="dark"] .theme-bouton__soleil {
+  display: block;
+}
+:root[data-theme="dark"] .theme-bouton__lune {
+  display: none;
+}
+@media (max-width: 30rem) {
+  .theme-bouton {
+    width: 2.3rem;
+    height: 2.3rem;
   }
 }
 
@@ -412,7 +468,7 @@ h2 mark.todo {
 
 /* Panneau « Être aidé » du hero */
 .maison__corps {
-  background: var(--color-marine);
+  background: var(--color-panneau);
   color: var(--color-blanc);
   border-radius: var(--rayon);
   padding: clamp(1.6rem, 3.5vw, 2.4rem);
@@ -422,7 +478,7 @@ h2 mark.todo {
   font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
 }
 .maison__corps p {
-  color: #dfe6f2;
+  color: var(--color-panneau-texte);
 }
 .maison__corps a:not(.bouton) {
   color: var(--color-blanc);
@@ -466,7 +522,7 @@ h2 mark.todo {
   font-family: var(--font-titre);
   font-size: 1.35rem;
   line-height: 1.45;
-  color: var(--color-marine);
+  color: var(--color-titre);
 }
 .citation figcaption {
   color: var(--color-texte-doux);
@@ -512,12 +568,12 @@ h2 mark.todo {
 .agenda__date {
   margin: 0;
   text-align: center;
-  border: 2px solid var(--color-marine);
+  border: 2px solid var(--color-titre);
   border-radius: var(--rayon);
   padding: 0.4rem 0 0.5rem;
   align-self: start;
   line-height: 1.1;
-  color: var(--color-marine);
+  color: var(--color-titre);
 }
 .agenda__jour {
   display: block;
@@ -660,7 +716,7 @@ h2 mark.todo {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--color-marine);
+  background: var(--color-bouton);
   color: var(--color-blanc);
   font-weight: 700;
 }
@@ -705,15 +761,15 @@ h2 mark.todo {
   width: 100%;
   font: inherit;
   color: var(--color-texte);
-  background: var(--color-blanc);
-  border: 2px solid #8e9ab0;
+  background: var(--color-surface);
+  border: 2px solid var(--color-champ-bord);
   border-radius: var(--rayon);
   padding: 0.65rem 0.8rem;
 }
 .champ input:focus,
 .champ select:focus,
 .champ textarea:focus {
-  border-color: var(--color-marine);
+  border-color: var(--color-titre);
 }
 .champ__aide {
   font-size: var(--fs-small);
@@ -730,7 +786,7 @@ h2 mark.todo {
   width: 1.3rem;
   height: 1.3rem;
   margin: 0.2rem 0 0;
-  accent-color: var(--color-marine);
+  accent-color: var(--color-bouton);
 }
 .champ--case label {
   font-weight: 400;
@@ -741,14 +797,14 @@ h2 mark.todo {
   font-weight: 700;
 }
 .formulaire__succes {
-  border-left: 4px solid var(--color-marine);
+  border-left: 4px solid var(--color-titre);
   padding: 0.5rem 0 0.5rem 1.2rem;
 }
 
 /* ---------- Pied de page ---------- */
 .pied {
-  background: var(--color-marine);
-  color: #dfe6f2;
+  background: var(--color-panneau);
+  color: var(--color-panneau-texte);
   margin-top: 0;
 }
 .pied__inner {

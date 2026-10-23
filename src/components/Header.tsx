@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { LogoIcone } from "./Logo";
 import { NavLinks } from "./NavLinks";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   return (
@@ -23,6 +24,8 @@ export function Header() {
         <nav aria-label="Navigation principale" className="nav nav--bureau">
           <NavLinks />
         </nav>
+
+        <ThemeToggle />
 
         <Link href={site.ctaPrincipal.href} className="bouton bouton--marine entete__cta">
           {site.ctaPrincipal.label}

@@ -18,6 +18,17 @@
   --color-filet: #d5dce7;         /* bordures fines */
   --color-focus: #2f6fd6;
 
+  /* Rôles des couleurs (c'est ici que le mode sombre les redéfinit) */
+  --color-titre: var(--color-marine);          /* titres, liens, texte de marque */
+  --color-surface: var(--color-blanc);         /* en-tête, champs de formulaire, menu mobile */
+  --color-bouton: var(--color-marine);         /* fond des boutons et pastilles */
+  --color-bouton-survol: var(--color-marine-soft);
+  --color-panneau: var(--color-marine);        /* panneau « Être aidé », pied de page */
+  --color-panneau-texte: #dfe6f2;
+  --color-champ-bord: #8e9ab0;
+  --color-logo-contour: transparent;
+  color-scheme: light;
+
   /* « Reste à faire » : tout ce qui est provisoire ou incomplet */
   --color-todo: #ffb000;
   --color-todo-fond: #fff3cf;
@@ -41,4 +52,34 @@
   --gouttiere: clamp(1rem, 4vw, 2rem);
   --espace-section: clamp(3rem, 7vw, 5.5rem);
   --rayon: 6px;
+}
+
+/*
+ * MODE SOMBRE — activé par l'attribut data-theme="dark" sur <html>
+ * (voir src/components/ThemeToggle.tsx et le script du layout).
+ * Dominante : bleu nuit. Pour changer l'ambiance, modifier uniquement ce bloc.
+ */
+:root[data-theme="dark"] {
+  --color-fond: #0a1426;
+  --color-fond-alt: #0f1d38;
+  --color-texte: #e8eef9;
+  --color-texte-doux: #a3b2cc;
+  --color-filet: #22355a;
+  --color-focus: #7db0ff;
+
+  --color-titre: #b4cfff;
+  --color-surface: #0d1a33;
+  --color-bouton: #2a5bb8;
+  --color-bouton-survol: #3468c8;
+  --color-panneau: #123068;
+  --color-panneau-texte: #d6e1f5;
+  --color-champ-bord: #6c80a6;
+  --color-logo-contour: rgba(255, 255, 255, 0.3);
+
+  --color-rouge-texte: #ff8f86;
+
+  --color-todo-fond: #3b2d06;
+  --color-todo-texte: #ffe0a0;
+
+  color-scheme: dark;
 }
