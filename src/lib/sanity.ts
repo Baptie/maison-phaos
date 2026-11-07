@@ -45,6 +45,9 @@ export async function getArticles(limite?: number): Promise<Resultat<Article[]>>
     return { donnees: articles, factice: false };
   } catch (e) {
     console.error("[blog]", e);
+    // En CI (GitHub), on préfère faire échouer la construction : la version en ligne reste intacte
+    // au lieu d'être remplacée par un site sans articles lors d'une panne passagère de Sanity.
+    if (process.env.CI) throw e;
     return { donnees: [], factice: false, erreur: "Les actualités sont momentanément indisponibles." };
   }
 }
@@ -58,6 +61,9 @@ export async function getArticle(slug: string): Promise<Article | null> {
     );
   } catch (e) {
     console.error("[blog]", e);
+    // En CI (GitHub), on préfère faire échouer la construction : la version en ligne reste intacte
+    // au lieu d'être remplacée par un site sans articles lors d'une panne passagère de Sanity.
+    if (process.env.CI) throw e;
     return null;
   }
 }
