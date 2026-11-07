@@ -5,8 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:dev": "NEXT_PUBLIC_SITE_MODE=dev next build && rm -rf dist-dev && mv out dist-dev",
+    "build:prod": "NEXT_PUBLIC_SITE_MODE=prod next build && rm -rf dist-prod && mv out dist-prod",
+    "dev:prod": "NEXT_PUBLIC_SITE_MODE=prod NEXT_DIST_DIR=.next-prod next dev -p 3001",
+    "preview:dev": "python3 -m http.server 3000 -d dist-dev",
+    "preview:prod": "python3 -m http.server 3001 -d dist-prod"
   },
   "dependencies": {
     "@fontsource-variable/source-serif-4": "5.3.1",

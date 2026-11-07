@@ -61,7 +61,7 @@ export default function EtreAide() {
             <div className="encadre cascade">
               <h3>Faire une demande maintenant</h3>
               <p>Décrivez votre situation en quelques lignes. Nous vous répondrons par e-mail.</p>
-              <Link href="/contact?objet=aide" className="bouton bouton--marine">
+              <Link href="/contact/#aide" className="bouton bouton--marine">
                 Demander de l&apos;aide
               </Link>
             </div>

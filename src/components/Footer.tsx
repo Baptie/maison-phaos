@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/config/site";
 import { LogoIcone } from "./Logo";
+import { modeProd } from "@/config/mode";
 import { Valeur } from "./Todo";
 
 export function Footer() {
@@ -18,12 +19,16 @@ export function Footer() {
         <div>
           <h2 className="pied__titre">Nous joindre</h2>
           <ul className="pied__liste">
-            <li>
-              <Valeur v={site.contact.adresse} />
-            </li>
-            <li>
-              <Valeur v={site.contact.telephone} />
-            </li>
+            {modeProd && site.contact.adresse.todo ? null : (
+              <li>
+                <Valeur v={site.contact.adresse} />
+              </li>
+            )}
+            {modeProd && site.contact.telephone.todo ? null : (
+              <li>
+                <Valeur v={site.contact.telephone} />
+              </li>
+            )}
             <li>
               <Link href="/contact">Écrire à l&apos;association</Link>
             </li>
@@ -48,10 +53,12 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="pied__legende">
-        <mark className="todo">Les zones surlignées en jaune</mark> sont provisoires et restent à
-        compléter avant la mise en ligne.
-      </p>
+      {modeProd ? null : (
+        <p className="pied__legende">
+          <mark className="todo">Les zones surlignées en jaune</mark> sont provisoires et restent à
+          compléter avant la mise en ligne.
+        </p>
+      )}
     </footer>
   );
 }

@@ -5,15 +5,19 @@ import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import { getArticle, getArticles, blogFactice } from "@/lib/sanity";
 import { dateLongue } from "@/lib/format";
+import { modeProd } from "@/config/mode";
 
-export const revalidate = 600;
-export const dynamicParams = true;
+// Site statique : seuls les articles connus à la construction existent (reconstruire pour en publier)
+export const dynamicParams = false;
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const { donnees } = await getArticles();
-  return donnees.map((a) => ({ slug: a.slug }));
+  const { donnees, factice } = await getArticles();
+  // En prod, les articles de démonstration ne sont pas publiés
+  const slugs = factice && modeProd ? [] : donnees.map((a) => a.slug);
+  // L'export statique exige au moins une page : sans article, ce faux article affiche la page 404
+  return (slugs.length ? slugs : ["aucun-article"]).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -23,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const article = await getArticle((await params).slug);
-  if (!article) notFound();
+  if (!article || (modeProd && blogFactice)) notFound();
 
   return (
     <div className="contenu">

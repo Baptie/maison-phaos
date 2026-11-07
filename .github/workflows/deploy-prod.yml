@@ -1,0 +1,56 @@
+# Déploiement automatique de la PROD chez OVH (hébergement mutualisé, par FTP).
+#  - à chaque push sur la branche « main » ;
+#  - à la demande (onglet Actions > « Déployer la prod » > Run workflow).
+# Sanity (articles) et Google Agenda ne sont pas encore branchés : le site affiche « arrive bientôt ».
+# Quand ils le seront, ajouter les secrets correspondants (voir README) et réactiver la reconstruction
+# régulière (bloc « schedule » ci-dessous), car le site est statique.
+# Secrets à créer : voir README, section « Déploiement automatique ».
+name: Déployer la prod
+
+on:
+  push:
+    branches: [main]
+  # schedule:                    # à réactiver avec Sanity / Google Agenda
+  #   - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+# Un seul déploiement de prod à la fois ; un nouveau remplace celui en attente
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Construire le site (prod)
+        run: npm run build:prod
+        env:
+          # À ajouter plus tard : SANITY_PROJECT_ID, SANITY_DATASET, GOOGLE_CALENDAR_ICS_URL
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL_PROD }}
+
+      - name: Vérifier le build avant d'envoyer
+        run: test -s dist-prod/index.html && test -s dist-prod/.htaccess
+
+      - name: Envoyer sur OVH (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist-prod/
+          server-dir: ${{ secrets.OVH_PROD_DIR }}
