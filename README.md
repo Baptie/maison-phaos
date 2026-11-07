@@ -66,11 +66,15 @@ Un push sur la branche `main` construit le site (`build:prod`) et l'envoie par F
 | `OVH_FTP_USER` / `OVH_FTP_PASSWORD` | identifiant et mot de passe FTP |
 | `OVH_PROD_DIR` | dossier du site, avec `/` final : `/www/` (en FTP, la racine est le dossier personnel `/home/maisoicr`) |
 | `SITE_URL_PROD` | facultatif : `https://maison-phaos.fr` |
+| `SANITY_PROJECT_ID` / `SANITY_DATASET` | `50qw41xy` / `production` : lus à chaque construction du site pour afficher les articles |
+| `SANITY_AUTH_TOKEN` | jeton Sanity « Deploy Studio » (sanity.io/manage > projet > API > Tokens), pour publier le studio depuis GitHub |
 | `OVH_FTP_PROTOCOL` | facultatif : `ftp` si le serveur refuse le FTP chiffré (erreur « 500 This security scheme is not implemented »). Par défaut : `ftps` |
 
 Il n'y a qu'un seul dossier chez OVH : la version **dev** reste en local (`npm run dev`) et n'est pas déployée.
 
-**À faire plus tard : Sanity et Google Agenda.** Tant qu'ils ne sont pas branchés, la prod affiche « arrive bientôt » pour les articles et l'agenda. Le jour venu : ajouter les secrets `SANITY_PROJECT_ID`, `SANITY_DATASET`, `GOOGLE_CALENDAR_ICS_URL`, les déclarer dans l'étape de build du workflow, et réactiver le bloc `schedule` (reconstruction toutes les 3 h, car le site est statique).
+**Articles Sanity.** La prod relit les articles toutes les 3 heures et à chaque push sur `main`. Pour une mise en ligne immédiate après publication : GitHub > Actions > « Déployer la prod » > Run workflow. Facultatif : un webhook Sanity (sanity.io/manage > API > Webhooks, sur « Publier ») qui appelle `POST https://api.github.com/repos/Baptie/maison-phaos/dispatches` avec le corps `{"event_type":"sanity-publish"}` et un jeton GitHub limité à ce dépôt (droit « Contents : écriture ») déclenche la reconstruction à chaque publication.
+
+**À faire plus tard : Google Agenda.** Tant qu'il n'est pas branché, l'agenda affiche « arrive bientôt ». Le jour venu : ajouter le secret `GOOGLE_CALENDAR_ICS_URL` et le déclarer dans l'étape de build du workflow.
 
 ## Ce qui reste à compléter
 
@@ -88,11 +92,15 @@ Quand un texte est définitif, retirer simplement la balise `<Todo>` qui l'entou
 
 ### Blog (Sanity)
 
-1. Créer un projet gratuit sur [sanity.io/manage](https://www.sanity.io/manage), avec le jeu de données `production`.
-2. Dans le dossier `studio/` : `npm install`, puis `SANITY_STUDIO_PROJECT_ID=<id> npm run deploy`. L'espace d'édition est alors en ligne (par exemple `https://maison-phaos.sanity.studio`).
-3. Dans Sanity > API > CORS origins, ajouter `http://localhost:3000` (le site public lit Sanity à la construction, sans appel depuis le navigateur).
-4. Inviter le ou les bénévoles avec le rôle **Editor**.
-5. Renseigner `SANITY_PROJECT_ID` dans `.env.local` (valeur à utiliser à chaque construction du site).
+Le projet Sanity existe déjà : `maison-phaos`, identifiant `50qw41xy`, jeu de données `production` (public en lecture, c'est nécessaire pour que le site affiche les articles).
+
+1. En local : `SANITY_PROJECT_ID=50qw41xy` et `SANITY_DATASET=production` dans `.env.local`.
+2. Espace d'édition en local : `cd studio && npm install && npm run dev` (http://localhost:3333).
+3. Espace d'édition en ligne : publié sur `https://maison-phaos.sanity.studio`, **automatiquement** par GitHub à chaque modification du dossier `studio/` sur `main` (workflow « Déployer le studio Sanity »). Il faut pour cela le secret `SANITY_AUTH_TOKEN` (voir « Déploiement automatique »). Déploiement à la main : `cd studio && npx sanity login && npm run deploy`.
+4. Inviter le ou les bénévoles depuis sanity.io/manage > projet > Members, avec le rôle **Editor**.
+5. Pour que le site public affiche les articles, les secrets GitHub `SANITY_PROJECT_ID` et `SANITY_DATASET` sont lus à chaque construction.
+
+Aucun réglage CORS n'est nécessaire pour le site : les articles sont lus côté serveur.
 
 Un article publié apparaît sur le site après la prochaine construction (voir « Construire et mettre en ligne chez OVH »).
 

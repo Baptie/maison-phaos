@@ -1,0 +1,41 @@
+# Publie l'espace d'édition Sanity (https://maison-phaos.sanity.studio) :
+#  - à chaque modification du dossier studio/ sur « main » ;
+#  - à la demande (onglet Actions > « Déployer le studio Sanity » > Run workflow).
+# Secret requis : SANITY_AUTH_TOKEN (sanity.io/manage > projet > API > Tokens > « Deploy Studio »).
+name: Déployer le studio Sanity
+
+on:
+  push:
+    branches: [main]
+    paths: ["studio/**", ".github/workflows/deploy-studio.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-studio
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: studio
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: studio/package-lock.json
+
+      - run: npm ci
+
+      - name: Publier le studio
+        run: npx sanity deploy --yes
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}

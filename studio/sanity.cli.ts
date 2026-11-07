@@ -2,7 +2,7 @@ import { defineCliConfig } from "sanity/cli";
 
 export default defineCliConfig({
   api: {
-    projectId: process.env.SANITY_STUDIO_PROJECT_ID || "REMPLACER_PAR_PROJECT_ID",
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID || "50qw41xy",
     dataset: "production",
   },
   // Adresse de l'espace d'édition une fois publié : https://maison-phaos.sanity.studio

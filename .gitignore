@@ -13,3 +13,4 @@ studio/dist
 out
 dist-dev
 dist-prod
+studio/.sanity
