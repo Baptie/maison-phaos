@@ -42,6 +42,7 @@ export async function getArticles(limite?: number): Promise<Resultat<Article[]>>
       `*[_type == "article" && defined(slug.current) && !(_id in path("drafts.**"))]
         | order(coalesce(datePublication, _createdAt) desc)${tranche}{${champs}}`
     );
+    console.log(`[blog] ${articles.length} article(s) lu(s) depuis Sanity (jeu « ${dataset} ») : ${articles.map((a) => a.slug).join(", ") || "aucun"}`);
     return { donnees: articles, factice: false };
   } catch (e) {
     console.error("[blog]", e);

@@ -2,8 +2,14 @@
 Options -Indexes
 ErrorDocument 404 /404.html
 
-# La redirection http -> https se règle dans l'espace client OVH (Hébergements > Multisite > SSL),
-# pas ici : évite les boucles de redirection.
+# Redirection http -> https (certificat actif chez OVH). Les deux conditions évitent toute boucle
+# si le HTTPS est géré en amont du serveur.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
