@@ -51,6 +51,8 @@ jobs:
           server: ${{ secrets.OVH_FTP_HOST }}
           username: ${{ secrets.OVH_FTP_USER }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
+          # ftps (chiffré) par défaut ; si le serveur le refuse (« security scheme is not implemented »),
+          # créer le secret OVH_FTP_PROTOCOL avec la valeur « ftp »
+          protocol: ${{ secrets.OVH_FTP_PROTOCOL || 'ftps' }}
           local-dir: ./dist-prod/
           server-dir: ${{ secrets.OVH_PROD_DIR }}
