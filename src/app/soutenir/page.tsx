@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/config/site";
+import { modeProd } from "@/config/mode";
 import { images } from "@/config/images";
 import { PageHeader } from "@/components/PageHeader";
 import { SiteImage } from "@/components/SiteImage";
@@ -21,14 +22,14 @@ export default function Soutenir() {
             <div className="cascade">
               <h2>Faire un don</h2>
               <p>
-                <Todo>À quoi servent les dons, avec un exemple concret.</Todo>
+                <Todo prod="masquer">À quoi servent les dons, avec un exemple concret.</Todo>
               </p>
               {site.lienDon ? (
                 <a href={site.lienDon} className="bouton bouton--marine">
                   Faire un don
                 </a>
               ) : (
-                <TodoBloc titre="Bouton « Faire un don »">
+                <TodoBloc titre="Bouton « Faire un don »" titrePublic="Faire un don en ligne">
                   <p>
                     L&apos;outil de collecte en ligne n&apos;est pas encore choisi. Une fois choisi,
                     renseigner son lien dans <code>src/config/site.ts</code> (<code>lienDon</code>) :
@@ -36,9 +37,11 @@ export default function Soutenir() {
                   </p>
                 </TodoBloc>
               )}
-              <p className="texte-doux">
-                <Todo>Réduction d&apos;impôt : à confirmer selon le statut de l&apos;association.</Todo>
-              </p>
+              {modeProd ? null : (
+                <p className="texte-doux">
+                  <Todo>Réduction d&apos;impôt : à confirmer selon le statut de l&apos;association.</Todo>
+                </p>
+              )}
             </div>
             <SiteImage image={images.soutenir} />
           </section>
@@ -55,7 +58,7 @@ export default function Soutenir() {
             <p>
               <Todo>Les missions bénévoles possibles et le temps à prévoir.</Todo>
             </p>
-            <Link href="/contact?objet=benevolat" className="bouton bouton--contour">
+            <Link href="/contact/#benevolat" className="bouton bouton--contour">
               Proposer mon aide
             </Link>
           </section>

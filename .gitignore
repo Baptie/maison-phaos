@@ -9,3 +9,7 @@ next-env.d.ts
 studio/node_modules
 studio/dist
 .DS_Store
+.next-prod
+out
+dist-dev
+dist-prod

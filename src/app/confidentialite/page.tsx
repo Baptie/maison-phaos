@@ -14,9 +14,9 @@ export default function Confidentialite() {
       <div className="contenu">
         <div className="conteneur">
           <section className="cascade">
-            <h2>Formulaire de contact</h2>
+            <h2>Messages envoyés à l&apos;association</h2>
             <p>
-              Les informations envoyées par le formulaire (nom, adresse e-mail, message) servent
+              Les informations que vous nous envoyez par e-mail (nom, adresse e-mail, message) servent
               uniquement à répondre à votre demande. Elles ne sont ni vendues ni transmises à des
               tiers.
             </p>
@@ -24,7 +24,7 @@ export default function Confidentialite() {
               Durée de conservation : <Todo>à fixer par l&apos;association (par exemple 12 mois)</Todo>.
             </p>
             <p>
-              Responsable du traitement : <Todo>nom officiel de l&apos;association</Todo>.
+              Responsable du traitement : association Maison Phaos.
             </p>
           </section>
 

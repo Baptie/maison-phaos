@@ -1,9 +1,12 @@
 import { dateLongue, heure, jourEtMois } from "@/lib/format";
+import { modeProd } from "@/config/mode";
+import { Pastille } from "./Todo";
 import type { Evenement, Resultat } from "@/lib/types";
 
 export function EventList({ resultat }: { resultat: Resultat<Evenement[]> }) {
   const { donnees, factice, erreur } = resultat;
 
+  if (factice && modeProd) return <p className="vide"><Pastille>L'agenda arrive bientôt.</Pastille></p>;
   if (erreur) return <p className="vide">{erreur}</p>;
   if (donnees.length === 0)
     return <p className="vide">Aucun événement n&apos;est prévu pour le moment.</p>;

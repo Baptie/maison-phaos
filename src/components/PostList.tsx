@@ -1,11 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { dateCourte } from "@/lib/format";
+import { modeProd } from "@/config/mode";
+import { Pastille } from "./Todo";
+import { IconePhoto } from "./Icones";
 import type { Article, Resultat } from "@/lib/types";
 
 export function PostList({ resultat }: { resultat: Resultat<Article[]> }) {
   const { donnees, factice, erreur } = resultat;
 
+  if (factice && modeProd) return <p className="vide"><Pastille>Les actualités arriveront bientôt.</Pastille></p>;
   if (erreur) return <p className="vide">{erreur}</p>;
   if (donnees.length === 0)
     return <p className="vide">Aucune actualité n&apos;a encore été publiée.</p>;
@@ -26,8 +30,8 @@ export function PostList({ resultat }: { resultat: Resultat<Article[]> }) {
                 <Image src={`${a.image.url}?w=800&h=500&fit=crop&auto=format`} alt={a.image.alt} fill sizes="(max-width: 48rem) 100vw, 33vw" />
               </div>
             ) : (
-              <div className="article-carte__image image-todo" aria-hidden="true">
-                <span>Image de l&apos;article</span>
+              <div className={`article-carte__image ${modeProd ? "image-construction" : "image-todo"}`} aria-hidden="true">
+                <span>{modeProd ? <IconePhoto /> : "Image de l'article"}</span>
               </div>
             )}
             <p className="article-carte__date">

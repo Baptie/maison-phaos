@@ -15,17 +15,17 @@ export default function MentionsLegales() {
             <h2>Éditeur du site</h2>
             <ul className="liste-simple">
               <li>
-                Dénomination : <Todo>nom officiel de l&apos;association</Todo>
+                Dénomination : Maison Phaos
               </li>
               <li>
                 Forme : association régie par la loi du 1er juillet 1901,{" "}
                 <Todo>numéro RNA (W…)</Todo>
               </li>
               <li>
-                Siège : <Valeur v={site.contact.adresse} />
+                Siège : Saint-Jean-de-la-Ruelle (45140)
               </li>
               <li>
-                Directeur de la publication : <Todo>nom du président ou de la présidente</Todo>
+                Directeur de la publication : Valentine Legrand
               </li>
               <li>
                 Contact : <Valeur v={site.contact.email} />
@@ -36,8 +36,7 @@ export default function MentionsLegales() {
           <section className="cascade">
             <h2>Hébergement</h2>
             <p>
-              Netlify, Inc., États-Unis.{" "}
-              <Todo>Adresse postale et téléphone de l&apos;hébergeur à reprendre depuis netlify.com.</Todo>
+              OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. Téléphone : 1007 (service client).
             </p>
           </section>
 

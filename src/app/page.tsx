@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/config/site";
+import { modeProd } from "@/config/mode";
 import { images } from "@/config/images";
 import { getEvenements } from "@/lib/calendar";
 import { getArticles } from "@/lib/sanity";
@@ -8,7 +9,6 @@ import { PostList } from "@/components/PostList";
 import { SiteImage } from "@/components/SiteImage";
 import { Todo, TodoBloc, Valeur } from "@/components/Todo";
 
-export const revalidate = 600;
 
 export default async function Accueil() {
   const [evenements, articles] = await Promise.all([getEvenements(3), getArticles(3)]);
@@ -20,16 +20,18 @@ export default async function Accueil() {
         <div className="conteneur hero__grille">
           <div className="cascade">
             <h1>
-              <Todo note="Phrase de mission : proposition à valider par l'association">
+              <Todo prod="garder" note="Phrase de mission : proposition à valider par l'association">
                 Après la blessure, une maison pour se reconstruire.
               </Todo>
             </h1>
-            <p className="lead">
-              <Todo note="À réécrire par l'association">
-                Présentation de la mission en deux phrases : qui l&apos;association accompagne, et
-                comment.
-              </Todo>
-            </p>
+            {modeProd ? null : (
+              <p className="lead">
+                <Todo note="À réécrire par l'association">
+                  Présentation de la mission en deux phrases : qui l&apos;association accompagne, et
+                  comment.
+                </Todo>
+              </p>
+            )}
             <div className="hero__liens">
               <Link href="/association">Découvrir l&apos;association</Link>
               <Link href="/soutenir">Nous soutenir</Link>
@@ -41,14 +43,16 @@ export default async function Accueil() {
               <h2>Vous êtes blessé, ou proche d&apos;un blessé&nbsp;?</h2>
               <p>
                 L&apos;association vous écoute et vous oriente, quelle que soit votre situation.
-                <Todo note="À confirmer par l'association"> La demande est gratuite et confidentielle.</Todo>
+                <Todo prod="masquer" note="À confirmer par l'association"> La demande est gratuite et confidentielle.</Todo>
               </p>
               <Link href={site.ctaPrincipal.href} className="bouton bouton--blanc">
                 Demander de l&apos;aide
               </Link>
-              <p className="maison__contact">
-                Par téléphone : <Valeur v={site.contact.telephone} />
-              </p>
+              {modeProd && site.contact.telephone.todo ? null : (
+                <p className="maison__contact">
+                  Par téléphone : <Valeur v={site.contact.telephone} />
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -65,20 +69,22 @@ export default async function Accueil() {
                 l&apos;association au quotidien (4 à 5 lignes).
               </Todo>
             </p>
-            <TodoBloc titre="Chiffres clés (facultatif)">
+            <TodoBloc titre="Chiffres clés (facultatif)" prod="masquer">
               <p>Deux ou trois chiffres parlants : années d&apos;existence, personnes accompagnées, bénévoles.</p>
             </TodoBloc>
             <Link href="/association" className="bouton bouton--contour">
               Découvrir l&apos;association
             </Link>
-            <figure className="citation">
-              <blockquote>
-                <Todo>Témoignage d&apos;une personne accompagnée, en une ou deux phrases.</Todo>
-              </blockquote>
-              <figcaption>
-                <Todo>Prénom, avec son accord</Todo>
-              </figcaption>
-            </figure>
+            {modeProd ? null : (
+              <figure className="citation">
+                <blockquote>
+                  <Todo>Témoignage d&apos;une personne accompagnée, en une ou deux phrases.</Todo>
+                </blockquote>
+                <figcaption>
+                  <Todo>Prénom, avec son accord</Todo>
+                </figcaption>
+              </figure>
+            )}
           </div>
           <SiteImage image={images.accueil} ratio="4 / 5" className="bloc" />
         </div>
@@ -114,7 +120,7 @@ export default async function Accueil() {
             <li className="cascade">
               <h3>Faire un don</h3>
               <p>
-                <Todo note="Outil de collecte à choisir">Le don en ligne sera bientôt disponible.</Todo>
+                <Todo prod="garder" note="Outil de collecte à choisir">Le don en ligne sera bientôt disponible.</Todo>
               </p>
               <Link href="/soutenir#don">En savoir plus</Link>
             </li>

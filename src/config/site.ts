@@ -9,14 +9,13 @@ export const site = {
   nom: "Maison Phaos",
   description:
     "Association d'accompagnement des militaires blessés et de leurs proches.",
-  url: "https://maison-phaos.fr",
+  // Adresse publique du site (NEXT_PUBLIC_SITE_URL permet de la changer, ex. pour le sous-domaine de dev)
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://maison-phaos.fr",
 
   contact: {
-    // Adresse qui reçoit les messages du formulaire (à régler aussi dans Netlify > Forms > Notifications)
+    // Adresse de contact publique : les boutons « Écrire un e-mail » ouvrent la messagerie vers cette adresse
     email: {
-      valeur: "contact.baptistecaron@gmail.com",
-      todo: true,
-      note: "Adresse provisoire, à remplacer par une adresse de l'association",
+      valeur: "asso.maisonphaos@gmail.com",
     } as Valeur,
     telephone: { valeur: "Numéro de téléphone à fournir", todo: true } as Valeur,
     adresse: { valeur: "Adresse postale du siège à fournir", todo: true } as Valeur,

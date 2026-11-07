@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { ImageSite } from "@/config/images";
+import { modeProd } from "@/config/mode";
+import { IconePhoto } from "./Icones";
 
 /** Image du site, ou emplacement jaune « à compléter » si aucune image n'est encore fournie. */
 export function SiteImage({
@@ -13,6 +15,21 @@ export function SiteImage({
   priority?: boolean;
   className?: string;
 }) {
+  if (!image.src && modeProd) {
+    return (
+      <div
+        className={`image-construction ${className}`}
+        style={{ aspectRatio: ratio }}
+        role="img"
+        aria-label="Photo bientôt disponible"
+      >
+        <span>
+          <IconePhoto />
+          Photo bientôt disponible
+        </span>
+      </div>
+    );
+  }
   if (!image.src) {
     return (
       <div

@@ -6,7 +6,6 @@ import { PostList } from "@/components/PostList";
 import { EventList } from "@/components/EventList";
 
 export const metadata: Metadata = { title: "Actualités" };
-export const revalidate = 600;
 
 export default async function Blog() {
   const [articles, evenements] = await Promise.all([getArticles(), getEvenements(10)]);
