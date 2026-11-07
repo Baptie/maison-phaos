@@ -66,6 +66,7 @@ Un push sur la branche `main` construit le site (`build:prod`) et l'envoie par F
 | `OVH_FTP_USER` / `OVH_FTP_PASSWORD` | identifiant et mot de passe FTP |
 | `OVH_PROD_DIR` | dossier du site, avec `/` final : `/www/` (en FTP, la racine est le dossier personnel `/home/maisoicr`) |
 | `SITE_URL_PROD` | facultatif : `https://maison-phaos.fr` |
+| `OVH_FTP_PROTOCOL` | facultatif : `ftp` si le serveur refuse le FTP chiffré (erreur « 500 This security scheme is not implemented »). Par défaut : `ftps` |
 
 Il n'y a qu'un seul dossier chez OVH : la version **dev** reste en local (`npm run dev`) et n'est pas déployée.
 
