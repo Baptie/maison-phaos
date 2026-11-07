@@ -19,11 +19,7 @@ export default async function Accueil() {
       <section className="hero">
         <div className="conteneur hero__grille">
           <div className="cascade">
-            <h1>
-              <Todo prod="garder" note="Phrase de mission : proposition à valider par l'association">
-                Après la blessure, une maison pour se reconstruire.
-              </Todo>
-            </h1>
+            <h1>Site en construction</h1>
             {modeProd ? null : (
               <p className="lead">
                 <Todo note="À réécrire par l'association">
